@@ -16,6 +16,7 @@ type UserController interface {
 	CreateUser(c *gin.Context)
 	UpdateUser(c *gin.Context)
 	DeleteUserById(c *gin.Context)
+	Ping(c *gin.Context)
 }
 
 // Struct
