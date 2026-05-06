@@ -24,7 +24,6 @@ func main() {
 	repo := repository.NewUserRepository(db)
 	ctrl := controllers.NewUserController(repo)
 	router := routes.NewUserRouter(ctrl)
-
 	
 	router.Run(":" + cfg.Port)
 }
