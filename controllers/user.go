@@ -15,6 +15,7 @@ type UserController interface {
 	GetUserById(c *gin.Context)
 	CreateUser(c *gin.Context)
 	UpdateUser(c *gin.Context)
+	PatchUserById(c *gin.Context)
 	DeleteUserById(c *gin.Context)
 	Ping(c *gin.Context)
 }
@@ -90,6 +91,26 @@ func (ctrl *userController) UpdateUser(c *gin.Context) {
 	if (errorHandler(err, c)) { return }
 	
 	c.JSON(http.StatusOK, user)	
+}
+
+func (ctrl *userController) PatchUserById(c *gin.Context) {
+	id := c.Param("id")
+	
+	var updates map[string]interface{}
+	
+	err := c.ShouldBindJSON(&updates)
+	if (err != nil) {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+		return
+	}
+	
+	_, err = ctrl.repo.FindById(id)
+	if (errorHandler(err, c)) { return }
+	
+	user, err := ctrl.repo.Patch(id, updates)
+	if (errorHandler(err, c)) { return }
+	
+	c.JSON(http.StatusOK, user)
 }
 
 func (ctrl *userController) DeleteUserById(c *gin.Context) {
