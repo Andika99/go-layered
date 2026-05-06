@@ -14,5 +14,7 @@ func NewUserRouter(ctrl controllers.UserController) *gin.Engine {
 	router.PUT("/user", ctrl.UpdateUser)
 	router.DELETE("user/:id", ctrl.DeleteUserById)
 	
+	router.HEAD("/ping", ctrl.Ping)
+	
 	return router
 }

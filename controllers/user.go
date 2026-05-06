@@ -103,6 +103,10 @@ func (ctrl *userController) DeleteUserById(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "User deleted successfully"})
 }
 
+func (ctrl *userController) Ping(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "pong"})
+}
+
 // Functions
 func errorHandler(err error, c *gin.Context) bool {
 	if (err != nil) {
