@@ -3,6 +3,7 @@ package routes
 import (
 	"go-layered/controllers"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 func NewUserRouter(ctrl controllers.UserController) *gin.Engine {
