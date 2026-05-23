@@ -8,6 +8,9 @@ import (
 func NewUserRouter(ctrl controllers.UserController) *gin.Engine {
 	router := gin.Default()
 	
+    // Apply CORS middleware globally with permissive or specific configurations
+    router.Use(cors.Default()) 
+	
 	router.GET("/users", ctrl.GetUsers)
 	router.GET("/user/:id", ctrl.GetUserById)
 	router.POST("/user", ctrl.CreateUser)
